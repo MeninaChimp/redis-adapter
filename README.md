@@ -1,5 +1,8 @@
 # redis-adapter
 
+ [![Cobra Release](https://img.shields.io/github/release/MeninaChimp/redis-adapter.svg)](https://github.com/MeninaChimp/redis-adapter/releases)
+ [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/MeninaChimp/redis-adapter/blob/master/LICENSE)
+
   A redis client for redis，redis read/write split，codis，auto configuration，user-defined by using redis.properties under resources directory。 
 
 Features
