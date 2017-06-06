@@ -13,7 +13,7 @@ import java.util.Set;
  * author: Menina
  */
 
-public class BinaryRedisTemplate extends Template{
+public class BinaryRedisTemplate extends AbstractTemplate{
 
     public Long del(byte[] key) {
         Jedis jedis = resourcePool.getResource();

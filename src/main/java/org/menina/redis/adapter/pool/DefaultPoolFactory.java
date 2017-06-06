@@ -17,23 +17,10 @@ import redis.clients.util.Pool;
  */
 
 @Component("defaultPoolFactory")
-public class DefaultPoolFactory implements PoolFactory<Jedis>, InitializingBean {
-
-    private boolean codisPoolFactory;
-    private boolean readWritePoolFactory;
+public class DefaultPoolFactory implements PoolFactory<Jedis> {
 
     @Autowired
     private CommonProperties commonProperties;
-
-    @Override
-    public boolean isCodisPoolFactory() {
-        return this.codisPoolFactory;
-    }
-
-    @Override
-    public boolean isReadWritePoolFactory() {
-        return this.readWritePoolFactory;
-    }
 
     @Override
     public Pool<Jedis> getPool() {
@@ -127,17 +114,6 @@ public class DefaultPoolFactory implements PoolFactory<Jedis>, InitializingBean 
                 commonProperties.getWriteClientName());
 
         return jedisPool;
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        if (this.commonProperties.isEnableCodisConfig()) {
-            this.codisPoolFactory = true;
-        }
-
-        if (this.commonProperties.isEnableReadwriteConfig()) {
-            this.readWritePoolFactory = true;
-        }
     }
 
     private JedisPoolConfig jedisPoolConfig(int maxTotal,
