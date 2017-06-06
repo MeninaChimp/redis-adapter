@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Created by Menina
- * Hash 负载均衡实现不了了
+ * Hash 负载均衡实现不了了，有点遗憾。
  */
 public class HashBalance<T> extends AbstractBalance<T>{
     @Override
