@@ -1,7 +1,5 @@
 package org.menina.redis.adapter;
 
-import org.menina.redis.adapter.serialize.Serialize;
-import org.menina.redis.adapter.serialize.json.Jackson2JsonSerializer;
 import org.menina.redis.adapter.template.RedisTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.Tuple;
@@ -19,9 +17,6 @@ public abstract class AbstractRedisSupport implements RedisSupport {
 
     @Autowired
     protected RedisTemplate redisTemplate;
-
-    @Autowired(required = false)
-    private Serialize serialize = new Jackson2JsonSerializer();
 
     @Override
     public String get(String key) {
@@ -616,13 +611,13 @@ public abstract class AbstractRedisSupport implements RedisSupport {
 
     @Override
     public <T> void serializeSet(String key, T t) {
-        redisTemplate.set(key.getBytes(), serialize.serialize(t));
+        redisTemplate.set(key.getBytes(), redisTemplate.getSerializer().serialize(t));
     }
 
     @Override
     public <T> T serializeGet(String key) {
         byte[] value = redisTemplate.get(key.getBytes());
-        return serialize.deserialize(value);
+        return redisTemplate.getSerializer().deserialize(value);
     }
 
     @Override

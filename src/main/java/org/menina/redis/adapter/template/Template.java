@@ -1,17 +1,20 @@
 package org.menina.redis.adapter.template;
 
+import org.menina.redis.adapter.serialize.Serializer;
 import redis.clients.jedis.Jedis;
 import redis.clients.util.Pool;
 
 /**
  * author: Menina
  */
-public abstract class Template {
+public interface Template {
 
-    protected Pool<Jedis> resourcePool;
+    void setDataSource(Pool<Jedis> resourcePool);
 
-    public abstract void setDataSource(Pool<Jedis> resourcePool);
+    void returnResource(Jedis jedis);
 
-    public abstract void returnResource(Jedis jedis);
+    void setSerializer(Serializer serializer);
+
+    Serializer getSerializer();
 
 }

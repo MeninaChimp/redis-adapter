@@ -1,5 +1,6 @@
 package org.menina.redis.adapter.template;
 
+import org.menina.redis.adapter.serialize.Serializer;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.SortingParams;
 import redis.clients.jedis.Tuple;
@@ -13,7 +14,7 @@ import java.util.Set;
  * author: Menina
  */
 
-public class BinaryRedisTemplate extends Template{
+public class BinaryRedisTemplate extends AbstractTemplate{
 
     public Long del(byte[] key) {
         Jedis jedis = resourcePool.getResource();
