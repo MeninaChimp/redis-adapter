@@ -1,5 +1,6 @@
 package org.menina.redis.adapter.template;
 
+import org.menina.redis.adapter.serialize.Serializer;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.SortingParams;
 import redis.clients.jedis.Tuple;

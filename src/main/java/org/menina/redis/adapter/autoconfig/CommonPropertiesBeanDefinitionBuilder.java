@@ -169,7 +169,7 @@ public class CommonPropertiesBeanDefinitionBuilder implements BeanFactoryPostPro
     }
 
     /**
-     * 转换为驼峰命名
+     * 去掉分隔符，转换为驼峰命名
      * @param target
      * @return
      */

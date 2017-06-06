@@ -15,4 +15,6 @@ public interface Template {
 
     void setSerializer(Serializer serializer);
 
+    Serializer getSerializer();
+
 }

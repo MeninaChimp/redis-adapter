@@ -29,4 +29,9 @@ public abstract class AbstractTemplate implements Template{
     public void setSerializer(Serializer serializer){
         this.serializer = serializer;
     }
+
+    @Override
+    public Serializer getSerializer() {
+        return this.serializer;
+    }
 }
