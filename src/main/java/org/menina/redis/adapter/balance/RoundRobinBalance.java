@@ -9,7 +9,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class RoundRobinBalance<T> extends AbstractBalance<T> {
 
-    private List<T> providers;
     private AtomicInteger currentIndex = new AtomicInteger(-1);
 
     public RoundRobinBalance() {

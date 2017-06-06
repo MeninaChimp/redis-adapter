@@ -8,10 +8,6 @@ import redis.clients.util.Pool;
 
 public interface PoolFactory<T> {
 
-    boolean isCodisPoolFactory();
-
-    boolean isReadWritePoolFactory();
-
     Pool<T> getPool();
 
     Pool<T> getCodisPool();
