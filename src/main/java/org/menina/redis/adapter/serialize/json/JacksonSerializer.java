@@ -6,7 +6,7 @@ import org.menina.redis.adapter.serialize.SerializerAdapter;
 import java.io.IOException;
 
 /**
- * Created by zhenghao on 2017/5/31.
+ * author: Menina
  */
 public class JacksonSerializer extends SerializerAdapter {
 

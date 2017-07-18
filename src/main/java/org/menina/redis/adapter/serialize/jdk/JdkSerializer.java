@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * Created by zhenghao on 2017/5/31.
+ * author: Menina
  */
 @Slf4j
 public class JdkSerializer extends SerializerAdapter {
