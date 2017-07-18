@@ -1,5 +1,6 @@
 package org.menina.redis.adapter;
 
+import org.menina.redis.adapter.extend.ExtendOperationSupport;
 import org.menina.redis.adapter.template.RedisTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.Tuple;
@@ -17,6 +18,9 @@ public abstract class AbstractRedisSupport implements RedisSupport {
 
     @Autowired
     protected RedisTemplate redisTemplate;
+
+    @Autowired
+    protected ExtendOperationSupport extendOperationSupport;
 
     @Override
     public String get(String key) {
@@ -608,18 +612,6 @@ public abstract class AbstractRedisSupport implements RedisSupport {
         return redisTemplate.persist(key);
     }
 
-
-    @Override
-    public <T> void serializeSet(String key, T t) {
-        redisTemplate.set(key.getBytes(), redisTemplate.getSerializer().serialize(t));
-    }
-
-    @Override
-    public <T> T serializeGet(String key) {
-        byte[] value = redisTemplate.get(key.getBytes());
-        return redisTemplate.getSerializer().deserialize(value);
-    }
-
     @Override
     public Long sadd(String key, Set<String> members) {
         if(members.size() == 0){
@@ -750,5 +742,10 @@ public abstract class AbstractRedisSupport implements RedisSupport {
     @Override
     public Set<byte[]> sdiff(byte[]... keys) {
         return redisTemplate.sdiff(keys);
+    }
+
+    @Override
+    public ExtendOperationSupport extend() {
+        return this.extendOperationSupport;
     }
 }

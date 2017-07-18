@@ -1,10 +1,10 @@
 package org.menina.redis.adapter;
 
+import org.menina.redis.adapter.extend.ExtendOperationSupport;
 import redis.clients.jedis.JedisPubSub;
 import redis.clients.jedis.ScanResult;
 import redis.clients.jedis.Tuple;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -654,9 +654,8 @@ public interface RedisSupport {
 
     /**
      * 键的值为集合，批量删除集合中的值
-     *
      * @param setName
-     * @param member
+     * @param members
      * @return
      */
     Long srem(String setName, List<String> members);
@@ -1190,22 +1189,6 @@ public interface RedisSupport {
     Long persist(String key);
 
     /**
-     * 将传入的可序列化对象T序列化后设置入Key的Value中
-     *
-     * @param key 存放序列化对象Value的Key
-     * @param t   可序列化对象
-     */
-    <T> void serializeSet(String key, T t);
-
-    /**
-     * 从redis中获取Key中存放的序列化对象
-     *
-     * @param key 存放序列化对象的Key
-     * @return
-     */
-    <T> T serializeGet(String key);
-
-    /**
      * 存放一个Set集合到Key中
      *
      * @param key
@@ -1325,4 +1308,11 @@ public interface RedisSupport {
      * @return
      */
     Set<byte[]> sdiff(byte[]... keys);
+
+    /**
+     * 复杂对象存取扩展接口
+     * @return
+     */
+    ExtendOperationSupport extend();
+
 }
