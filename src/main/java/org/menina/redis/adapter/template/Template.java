@@ -13,8 +13,4 @@ public interface Template {
 
     void returnResource(Jedis jedis);
 
-    void setSerializer(Serializer serializer);
-
-    Serializer getSerializer();
-
 }

@@ -1,7 +1,5 @@
 package org.menina.redis.adapter.template;
 
-import org.menina.redis.adapter.serialize.Serializer;
-import org.menina.redis.adapter.serialize.json.JacksonSerializer;
 import redis.clients.jedis.Jedis;
 import redis.clients.util.Pool;
 
@@ -11,8 +9,6 @@ import redis.clients.util.Pool;
 public abstract class AbstractTemplate implements Template{
 
     protected Pool<Jedis> resourcePool;
-
-    protected Serializer serializer = new JacksonSerializer();
 
     @Override
     public void setDataSource(Pool<Jedis> resourcePool) {
@@ -24,14 +20,5 @@ public abstract class AbstractTemplate implements Template{
         if (jedis != null) {
             jedis.close();
         }
-    }
-
-    public void setSerializer(Serializer serializer){
-        this.serializer = serializer;
-    }
-
-    @Override
-    public Serializer getSerializer() {
-        return this.serializer;
     }
 }
