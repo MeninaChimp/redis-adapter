@@ -36,14 +36,14 @@ public class JdkSerializer extends SerializerAdapter {
 
 
     @Override
-    protected <T> T doDeserialize(byte[] bytes) {
+    protected <T> T doDeserialize(byte[] bytes, Class<T> mapperTo) {
         T result = null;
         try {
             ByteArrayInputStream byteStream = new ByteArrayInputStream(bytes);
             try {
                 ObjectInputStream objectInputStream = new ObjectInputStream(byteStream);
                 try {
-                    result = (T) objectInputStream.readObject();
+                    return mapperTo.cast(objectInputStream.readObject());
                 } catch (ClassNotFoundException ex) {
                     throw new Exception("Failed to deserialize object type", ex);
                 }

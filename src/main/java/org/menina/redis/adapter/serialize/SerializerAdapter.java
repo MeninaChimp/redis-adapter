@@ -16,12 +16,12 @@ public abstract class SerializerAdapter implements Serializer {
     }
 
     @Override
-    public <T> T deserialize(byte[] bytes) {
+    public <T> T deserialize(byte[] bytes, Class<T> mapperTo) {
         if (isEmpty(bytes)) {
             return null;
         }
 
-        return this.doDeserialize(bytes);
+        return this.doDeserialize(bytes, mapperTo);
     }
 
     protected boolean isEmpty(byte[] data) {
@@ -30,5 +30,5 @@ public abstract class SerializerAdapter implements Serializer {
 
     protected abstract byte[] doSerialize(Object value);
 
-    protected abstract <T> T doDeserialize(byte[] bytes);
+    protected abstract <T> T doDeserialize(byte[] bytes, Class<T> mapperTo);
 }

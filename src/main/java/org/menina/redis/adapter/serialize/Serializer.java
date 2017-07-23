@@ -8,5 +8,5 @@ public interface Serializer {
 
     byte[] serialize(Object value);
 
-    <T> T deserialize(byte[] bytes);
+    <T> T deserialize(byte[] bytes, Class<T> mapperTo);
 }

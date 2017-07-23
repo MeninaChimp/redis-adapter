@@ -1,5 +1,6 @@
 package org.menina.redis.adapter.serialize.json;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.menina.redis.adapter.serialize.SerializerAdapter;
 
@@ -14,13 +15,17 @@ public class JacksonSerializer extends SerializerAdapter {
 
     @Override
     protected byte[] doSerialize(Object value) {
-        return new byte[0];
+        try {
+            return mapper.writeValueAsBytes(value);
+        } catch (JsonProcessingException e) {
+            throw new IllegalArgumentException(e.getMessage(), e);
+        }
     }
 
     @Override
-    protected <T> T doDeserialize(byte[] bytes) {
+    protected <T> T doDeserialize(byte[] bytes, Class<T> mapperTo) {
         try {
-            return (T)mapper.readValue(bytes, Object.class);
+            return mapper.readValue(bytes, mapperTo);
         } catch (IOException e) {
             throw new IllegalArgumentException(e.getMessage(), e);
         }
