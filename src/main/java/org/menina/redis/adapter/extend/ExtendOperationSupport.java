@@ -3,9 +3,9 @@ package org.menina.redis.adapter.extend;
 /**
  * author: Menina
  */
-public interface ExtendOperationSupport<T> {
+public interface ExtendOperationSupport {
 
-    T get(String key);
+    <T> T get(String key, Class<T> mapperTo);
 
-    void set(String key, T value);
+    void set(String key, Object value);
 }
