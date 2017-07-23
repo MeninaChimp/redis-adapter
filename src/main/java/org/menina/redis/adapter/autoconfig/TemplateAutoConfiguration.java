@@ -42,7 +42,7 @@ public class TemplateAutoConfiguration {
     private Balance balance;
 
     @Bean
-    public RedisTemplate redisTemplateForCodis() {
+    public RedisTemplate redisTemplate() {
         if(this.commonProperties.isEnableCodisConfig()){
             RedisTemplate template = new RedisTemplate();
             CodisPool codisPool = (CodisPool)defaultPoolFactory.getCodisPool();
