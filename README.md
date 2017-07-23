@@ -122,3 +122,36 @@ private RedisSupport RedisClient;
 private RedisSupport CodisClient;
 ```  
 
+extend
+------
+
+for complex operation, like set a Business Object, you can implement by following the way below:
+
+```
+redisClient.extend().set(key, BO);
+```  
+
+user-defined
+----
+
+so far, the default serializer is JacksonSerializer, the default strategy for load balancing is RoundRobinBalance, but you can change them.
+
+if you want to use JDK Serializer, you can follow the way below:
+
+```
+@Bean
+	public Serializer jdkSerializer(){
+		return new JdkSerializer();
+	}
+```
+
+if you do not want to use RoundRobinBalance, there is another implement for LB:
+
+```
+	@Bean
+	public Balance IpHashBalance(){
+		return new IpHashBalance();
+	}
+```
+
+more implements for LB will provide soon.
