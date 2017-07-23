@@ -139,13 +139,15 @@ so far, the default serializer is JacksonSerializer, the default strategy for l
 if you want to use JDK Serializer, you can follow the way below:
 
 ```
-@Bean
+	@Bean
 	public Serializer jdkSerializer(){
 		return new JdkSerializer();
 	}
 ```
 
-if you do not want to use RoundRobinBalance, there is another implement for LB:
+maybe you want to extend the implemention for serializer, the redis-adapter support you do this. you can extends SerializerAdapter and implement the abstract method doSerialize/doDeserialize, now, you inject your implemention to spring container, the redis-adapter will use your implemention to serialize business object.
+
+if you do not want to use RoundRobinBalance, there is another implemention for LB:
 
 ```
 	@Bean
@@ -154,4 +156,4 @@ if you do not want to use RoundRobinBalance, there is another implement for LB:
 	}
 ```
 
-more implements for LB will provide soon.
+more implements for LB will provide soon, and you can also extend implemention for LB by youself. like extend the implemention for serializer.
